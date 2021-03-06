@@ -1,6 +1,6 @@
-# Project 3 - *Tweetere*
+# Project 3 - *Tweetster*
 
-**Tweeter** is a basic twitter app to read your tweets.
+**Tweetster** is a basic twitter app to read your tweets.
 
 Time spent: **3** hours spent in total
 
