@@ -9,13 +9,13 @@
 import UIKit
 
 class TweetViewController: UIViewController, UITextViewDelegate {
+    
     @IBOutlet weak var tweetTextView: UITextView!
+    @IBOutlet weak var tweetCharacterCountLabel: UILabel!
     
     @IBAction func cancelButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
-    @IBOutlet weak var tweetCharacterCountLabel: UILabel!
     
     @IBAction func tweetButton(_ sender: Any) {
         if(!tweetTextView.text.isEmpty) {
@@ -34,22 +34,21 @@ class TweetViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         tweetTextView.becomeFirstResponder()
         tweetTextView.delegate = self
-        // Do any additional setup after loading the view.
+
+        self.tweetTextView!.layer.borderWidth = 2
+        self.tweetTextView.layer.cornerRadius = 10
+        self.tweetTextView.layer.borderColor = UIColor(red:0, green:0, blue:0, alpha: 1).cgColor
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        // Set the max character limit
         let characterLimit = 280
-
-        // Construct what the new text would be if we allowed the user's latest edit
-        let newText = NSString(string: textView.text!).replacingCharacters(in: range, with: text)
-        
+        let newText = NSString(string: textView.text!).replacingCharacters(in: range, with: text) // Textbox string
         let counter = 280 - newText.count
         
         tweetCharacterCountLabel.text = "\(counter)"
-
-        // The new text should be allowed? True/False
-        return newText.count < characterLimit    }
+        
+        return newText.count < characterLimit
+    }
     
 
     /*

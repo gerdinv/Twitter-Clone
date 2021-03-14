@@ -16,8 +16,12 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var retweetButton: UIButton!
     
+    @IBOutlet weak var retweetCountLabel: UILabel!
+    @IBOutlet weak var likeCountLabel: UILabel!
+    
     var favorited:Bool = false
     var tweetId:Int = -1
+    var retweeted:Bool = false
     
     func setFavorite(_ isFavorited:Bool ){
         favorited = isFavorited
@@ -29,8 +33,6 @@ class TweetCell: UITableViewCell {
     }
     
     @IBAction func likeTweet(_ sender: Any) {
-        
-        
         if(!favorited) {
             TwitterAPICaller.client?.favoriteTweet(tweetId: tweetId, success: {
                 self.setFavorite(true)
@@ -44,25 +46,30 @@ class TweetCell: UITableViewCell {
                 print("Unfavorite did not succeed: \(error)")
             })
         }
-        
     }
      
     @IBAction func retweet(_ sender: Any) {
-        TwitterAPICaller.client?.retweet(tweetId: tweetId, success: {
-            self.setRetweeted(true)
-        }, failure: { (error) in
-            self.setRetweeted(true)
-            print("Error trying to retweet: \(error)")
-        })
+        if(!retweeted){
+            TwitterAPICaller.client?.retweet(tweetId: tweetId, success: {
+                self.setRetweeted(true)
+            }, failure: { (error) in
+                print("Error trying to retweet: \(error)")
+            })
+        } else {
+            TwitterAPICaller.client?.unretweet(tweetId: tweetId, success: {
+                self.setRetweeted(false)
+            }, failure: { (error) in
+                print("Error trying to unretweet: \(error)")
+            })
+        }
     }
     
     func setRetweeted(_ isRetweeted: Bool) {
-        if(isRetweeted) {
+        retweeted = isRetweeted
+        if(retweeted) {
             retweetButton.setImage(UIImage(named: "retweet-icon-green"), for: UIControl.State.normal)
-            retweetButton.isEnabled = false
         } else {
             retweetButton.setImage(UIImage(named: "retweet-icon"), for: UIControl.State.normal)
-            retweetButton.isEnabled = true
         }
     }
     
@@ -73,7 +80,6 @@ class TweetCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
 

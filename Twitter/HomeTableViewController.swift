@@ -20,8 +20,9 @@ class HomeTableViewController: UITableViewController {
         loadTweets()
         myRefreshControl.addTarget(self, action: #selector(loadTweets), for: .valueChanged)
         tableView.refreshControl = myRefreshControl
-        self.tableView.rowHeight = UITableView.automaticDimension
-        self.tableView.estimatedRowHeight = 150
+//        self.tableView.estimatedRowHeight = 150
+        self.tableView?.rowHeight = 150
+        
     }
     
     @objc func loadTweets(){
@@ -60,8 +61,8 @@ class HomeTableViewController: UITableViewController {
             }
             
             self.tableView.reloadData()
-        }, failure: { (Error) in
-            print("Could not receive results")
+        }, failure: { (error) in
+            print("Could not receive results \(error)")
         })
     }
     
@@ -76,7 +77,6 @@ class HomeTableViewController: UITableViewController {
         self.dismiss(animated: true, completion: nil)
         UserDefaults.standard.set(false, forKey: "userLoggedIn")
     }
-    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -98,11 +98,16 @@ class HomeTableViewController: UITableViewController {
         
         if let imageData = data {
             cell.profileImageView.image = UIImage(data: imageData)
+            cell.profileImageView.layer.cornerRadius = cell.profileImageView.frame.size.width / 2
+            cell.profileImageView.clipsToBounds = true
         }
+        
+//        cell.retweetCountLabel.text = tweetArray[indexPath.row]["retweet_count"] as! String
+        cell.likeCountLabel.text = ("\(tweetArray[indexPath.row]["favorite_count"]!)") as! String
+        
         cell.setFavorite(tweetArray[indexPath.row]["favorited"] as! Bool)
         cell.tweetId = tweetArray[indexPath.row]["id"] as! Int
         cell.setRetweeted(tweetArray[indexPath.row]["retweeted"] as! Bool)
-        
         
         return cell
     }
@@ -112,15 +117,17 @@ class HomeTableViewController: UITableViewController {
             loadMoreTweets()
         }
     }
+      
     
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        // Get the new view controller using segue.destination.
+//        // Pass the selected object to the new view controller.
+//        
+//        let cell = sender as! UITableViewCell
+//    }
+    
 
 }

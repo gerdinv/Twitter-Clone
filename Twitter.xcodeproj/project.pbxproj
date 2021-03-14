@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0B0EA1C125F2F45200C0B054 /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0EA1C025F2F45200C0B054 /* TweetCell.swift */; };
+		0B2ED3D925FCC49500C62BE7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2ED3D825FCC49500C62BE7 /* ProfileViewController.swift */; };
 		0BB81AF425F0D83300E53849 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB81AF325F0D83300E53849 /* LoginViewController.swift */; };
 		0BB81AF725F0E20200E53849 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB81AF625F0E20200E53849 /* HomeTableViewController.swift */; };
 		0BCF4BE025F4D06A003C578B /* TweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCF4BDF25F4D06A003C578B /* TweetViewController.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		0B0EA1C025F2F45200C0B054 /* TweetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
+		0B2ED3D825FCC49500C62BE7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		0BB81AF325F0D83300E53849 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0BB81AF625F0E20200E53849 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		0BCF4BDF25F4D06A003C578B /* TweetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			children = (
 				6EBCF54D21E71F9400451C03 /* Launch Screen.storyboard */,
 				6EBCF52921DF07FC00451C03 /* Main.storyboard */,
+				0B2ED3D825FCC49500C62BE7 /* ProfileViewController.swift */,
 				6EBCF54321E047A500451C03 /* TwitterAPICaller.swift */,
 				6EBCF52521DF07FC00451C03 /* AppDelegate.swift */,
 				37D29B8521F90E3400984A88 /* Assets.xcassets */,
@@ -216,6 +219,7 @@
 				0BB81AF425F0D83300E53849 /* LoginViewController.swift in Sources */,
 				0BCF4BE025F4D06A003C578B /* TweetViewController.swift in Sources */,
 				0B0EA1C125F2F45200C0B054 /* TweetCell.swift in Sources */,
+				0B2ED3D925FCC49500C62BE7 /* ProfileViewController.swift in Sources */,
 				6EBCF54421E047A500451C03 /* TwitterAPICaller.swift in Sources */,
 				6EBCF52621DF07FC00451C03 /* AppDelegate.swift in Sources */,
 			);
