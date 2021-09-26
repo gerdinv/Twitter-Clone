@@ -20,11 +20,21 @@ class HomeTableViewController: UITableViewController {
         loadTweets()
         myRefreshControl.addTarget(self, action: #selector(loadTweets), for: .valueChanged)
         tableView.refreshControl = myRefreshControl
+//        self.tableView.rowHeight = UITableView.automaticDimension;
 //        self.tableView.estimatedRowHeight = 150
         self.tableView?.rowHeight = 150
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loadTweets()
+    }
+    
+    @IBAction func onClick(_ sender: Any) {
+        print("Image was clicked")
+    }
+
     @objc func loadTweets(){
         numberOfTweets = 20
         
@@ -38,10 +48,9 @@ class HomeTableViewController: UITableViewController {
             for tweet in tweets {
                 self.tweetArray.append(tweet)
             }
-            
+    
             self.tableView.reloadData()
             self.myRefreshControl.endRefreshing()
-            
         }, failure: { (Error) in
             print("Could not receive results")
         })
@@ -66,18 +75,12 @@ class HomeTableViewController: UITableViewController {
         })
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        loadTweets()
-        self.tableView.reloadData()
-    }
-    
     @IBAction func onLogout(_ sender: Any) {
         TwitterAPICaller.client?.logout()
         self.dismiss(animated: true, completion: nil)
         UserDefaults.standard.set(false, forKey: "userLoggedIn")
     }
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -102,8 +105,8 @@ class HomeTableViewController: UITableViewController {
             cell.profileImageView.clipsToBounds = true
         }
         
-//        cell.retweetCountLabel.text = tweetArray[indexPath.row]["retweet_count"] as! String
-        cell.likeCountLabel.text = ("\(tweetArray[indexPath.row]["favorite_count"]!)") as! String
+        cell.retweetCountLabel.text = ("\(tweetArray[indexPath.row]["retweet_count"]!)")
+        cell.likeCountLabel.text = ("\(tweetArray[indexPath.row]["favorite_count"]!)")
         
         cell.setFavorite(tweetArray[indexPath.row]["favorited"] as! Bool)
         cell.tweetId = tweetArray[indexPath.row]["id"] as! Int

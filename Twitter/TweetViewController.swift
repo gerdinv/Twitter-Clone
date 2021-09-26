@@ -40,6 +40,9 @@ class TweetViewController: UIViewController, UITextViewDelegate {
         self.tweetTextView.layer.borderColor = UIColor(red:0, green:0, blue:0, alpha: 1).cgColor
     }
     
+    @IBAction func onClick(_ sender: Any) {
+        print("HEY")
+    }
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let characterLimit = 280
         let newText = NSString(string: textView.text!).replacingCharacters(in: range, with: text) // Textbox string
